@@ -1,9 +1,9 @@
 import useSWR from "swr";
-import { Menu } from "../../lib/models";
+import { Menu } from "../lib/models";
 import { useNavigate, useParams } from "react-router-dom";
-import Layout from "../../components/layout";
+import Layout from "../components/layout";
 import { Alert, Button, Container, Divider, NumberInput, TextInput } from "@mantine/core";
-import Loading from "../../components/loading";
+import Loading from "../components/loading";
 import { IconAlertTriangleFilled, IconTrash } from "@tabler/icons-react";
 import { useForm } from "@mantine/form";
 import { useEffect, useState } from "react";

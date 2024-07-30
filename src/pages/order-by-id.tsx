@@ -1,9 +1,9 @@
 import { Alert, Button, Container, Divider } from "@mantine/core";
-import Layout from "../../components/layout";
+import Layout from "../components/layout";
 import { Link, useParams } from "react-router-dom";
-import { Order } from "../../lib/models";
+import { Order } from "../lib/models";
 import useSWR from "swr";
-import Loading from "../../components/loading";
+import Loading from "../components/loading";
 import { IconAlertTriangleFilled, IconEdit } from "@tabler/icons-react";
 
 export default function OrderByIdPage() {

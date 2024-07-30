@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
-import Layout from "../../components/layout";
+import Layout from "../components/layout";
 import { Button, Container, Divider, NumberInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { notifications } from "@mantine/notifications";
-import { Menu } from "../../lib/models";
+import { Menu } from "../lib/models";
 
 export default function MenuCreatePage() {
   const navigate = useNavigate();

@@ -1,8 +1,8 @@
-import Layout from "../../components/layout";
-import cafeBackgroundImage from "../../assets/images/bg-cafe-1.jpg";
+import Layout from "../components/layout";
+import cafeBackgroundImage from "../assets/images/bg-cafe-1.jpg";
 import useSWR from "swr";
-import { Order } from "../../lib/models";
-import Loading from "../../components/loading";
+import { Order } from "../lib/models";
+import Loading from "../components/loading";
 import { Alert, Button } from "@mantine/core";
 import { IconAlertTriangleFilled, IconPlus } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
