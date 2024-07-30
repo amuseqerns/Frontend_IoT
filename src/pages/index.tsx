@@ -32,13 +32,9 @@ export default function HomePage() {
           </div>
         </div>
         <p className="text-right mt-8">
-          ปัจจุบันค่าเฟ่ และห้องสมุดของเรา อยู่ในช่วงการดูแลของ ....
+          ปัจจุบันค่าเฟ่ และห้องสมุดของเรา อยู่ในช่วงการดูแลของ นิโลบล ตรีสุคนธรัตน์ รหัส 65070121
           {/* TODO: ชื่อของตนเอง, รหัสประจำตัวนักศึกษา และแนะนำคาเฟ่นี้ต่ออีกสักหน่อย + ใส่รูปของตนเอง (ไม่จำเป็นหากไม่สะดวกใจใส่รูป) */}
-          ซึ่งมีบริการ... Lorem ipsum dolor sit amet consectetur adipisicing elit. Architecto
-          placeat sit ea sapiente officia sunt cumque impedit, reiciendis quis eius asperiores!
-          Minus, mollitia? Vitae inventore odio quod ducimus similique, expedita sequi, reiciendis
-          rem recusandae impedit voluptatibus quo veritatis ut quis et suscipit? Eligendi, neque!
-          Earum quaerat unde similique totam. Pariatur!
+          ซึ่งมีบริการเครื่องดื่มที่หลากหลายชวนให้ดื่มด่ำยามอ่านหนังสือ ร้านคาเฟ่ที่ดูอบอุ่นและเป็นกันเองเพื่อให้คุณได้รู้สึกผ่อนคลายและปล่อยอารมณ์ไปกับการอ่านได้อย่างเต็มที่
         </p>
       </section>
 
