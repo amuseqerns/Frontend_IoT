@@ -1,8 +1,9 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
-# from sqlalchemy.orm import relationship
-
+from sqlalchemy.orm import relationship
+from typing import Optional
 from database import Base
-
+from pydantic import BaseModel
+    
 class Book(Base):
     __tablename__ = 'books'
 
