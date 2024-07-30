@@ -12,9 +12,16 @@ import { Notifications } from "@mantine/notifications";
 import BooksPage from "./pages/books";
 import BookByIdPage from "./pages/book-by-id";
 import BookEditById from "./pages/book-edit-by-id";
-import MenusPage from "./pages/menus"
 import { ModalsProvider } from "@mantine/modals";
 import BookCreatePage from "./pages/book-create";
+import MenuCreatePage from "./pages/menu-create";
+import MenuByIdPage from "./pages/menu-by-id";
+import MenuEditById from "./pages/menu-edit-by-id";
+import OrderByIdPage from "./pages/order-by-id";
+import OrderEditById from "./pages/order-edit-by-id";
+import MenuPage from "./pages/menu";
+import OrderPage from "./pages/order";
+import OrderCreatePage from "./pages/order-create";
 
 const theme = createTheme({
   primaryColor: "orange",
@@ -43,18 +50,36 @@ const router = createBrowserRouter([
     element: <BookEditById />,
   },
   {
-    path: "/menus/",
-    element: <MenusPage />,
-  },{
-    path: "/menus/edit/:menuId",
-    element: <MenuEditPagebyid />,
-  },{
-    path: "/menus/edit/",
-    element: <MenuEditPage />,
+    path: "/menu",
+    element: <MenuPage />,
   },
   {
-    path: "/menus/create",
+    path: "/menu/create",
     element: <MenuCreatePage />,
+  },
+  {
+    path: "/menu/:menuId",
+    element: <MenuByIdPage />,
+  },
+  {
+    path: "/menu/:menuId/edit",
+    element: <MenuEditById />,
+  },
+  {
+    path: "/order",
+    element: <OrderPage />,
+  },
+  {
+    path: "/order/create",
+    element: <OrderCreatePage />,
+  },
+  {
+    path: "/order/:orderId",
+    element: <OrderByIdPage />,
+  },
+  {
+    path: "/order/:orderId/edit",
+    element: <OrderEditById />,
   },
 ]);
 

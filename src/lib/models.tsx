@@ -3,13 +3,10 @@ export interface Book {
   title: string;
   author: string;
   year: number;
-  description: string;
-  prologue: string;
-  type1: string;
-  type2: string;
-  type3: string;
-  type4: string;
   is_published: boolean;
+  description: string;
+  synopsis: string;
+  category: string;
 }
 
 export interface Menu {
@@ -17,4 +14,13 @@ export interface Menu {
   name: string;
   price: number;
   description: string;
+}
+
+export interface Order {
+  id: number;
+  menu_id: number;
+  quantity: number;
+  status: string;
+  note: string;
+  menu_name: string;
 }
