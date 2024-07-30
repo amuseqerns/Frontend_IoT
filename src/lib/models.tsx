@@ -4,6 +4,9 @@ export interface Book {
   author: string;
   year: number;
   is_published: boolean;
+  description: string;
+  synopsis: string;
+  category: string;
 }
 
 export interface Menu {
@@ -11,4 +14,13 @@ export interface Menu {
   name: string;
   price: number;
   description: string;
+}
+
+export interface Order {
+  id: number;
+  menu_id: number;
+  quantity: number;
+  status: string;
+  note: string;
+  menu_name: string;
 }

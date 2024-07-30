@@ -9,12 +9,19 @@ import { SWRConfig } from "swr";
 import axios from "axios";
 import HomePage from "./pages";
 import { Notifications } from "@mantine/notifications";
-import BooksPage from "./pages/books";
-import BookByIdPage from "./pages/book-by-id";
-import BookEditById from "./pages/book-edit-by-id";
+import BooksPage from "./pages/book/books";
+import BookByIdPage from "./pages/book/book-by-id";
+import BookEditById from "./pages/book/book-edit-by-id";
 import { ModalsProvider } from "@mantine/modals";
-import BookCreatePage from "./pages/book-create";
+import BookCreatePage from "./pages/book/book-create";
+import MenuCreatePage from "./pages/menu/menu-create";
+import MenuByIdPage from "./pages/menu/menu-by-id";
+import MenuEditById from "./pages/menu/menu-edit-by-id";
+import OrderByIdPage from "./pages/order/order-by-id";
+import OrderEditById from "./pages/order/order-edit-by-id";
 import MenuPage from "./pages/menu/menu";
+import OrderPage from "./pages/order/order";
+import OrderCreatePage from "./pages/order/order-create";
 
 const theme = createTheme({
   primaryColor: "orange",
@@ -45,6 +52,34 @@ const router = createBrowserRouter([
   {
     path: "/menu",
     element: <MenuPage />,
+  },
+  {
+    path: "/menu/create",
+    element: <MenuCreatePage />,
+  },
+  {
+    path: "/menu/:menuId",
+    element: <MenuByIdPage />,
+  },
+  {
+    path: "/menu/:menuId/edit",
+    element: <MenuEditById />,
+  },
+  {
+    path: "/order",
+    element: <OrderPage />,
+  },
+  {
+    path: "/order/create",
+    element: <OrderCreatePage />,
+  },
+  {
+    path: "/order/:orderId",
+    element: <OrderByIdPage />,
+  },
+  {
+    path: "/order/:orderId/edit",
+    element: <OrderEditById />,
   },
 ]);
 

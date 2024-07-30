@@ -20,12 +20,12 @@ export default function MenuPage() {
           }}
         >
           <h1 className="text-5xl mb-2">เมนู</h1>
-          <h2>รายการเมนูเครื่องดื่มทั้งหมด</h2>
+          <h2>รายการเมนูทั้งหมด</h2>
         </section>
 
         <section className="container mx-auto py-8">
           <div className="flex justify-between">
-            <h1>รายการเมนูเครื่องดื่ม</h1>
+            <h1>รายการเมนู</h1>
 
             <Button
               component={Link}
