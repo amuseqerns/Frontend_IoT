@@ -172,7 +172,6 @@ def read_order(order_id: int, db: Session = Depends(get_db)):
         db.query(models.Order)
         .filter(models.Order.id == order_id)
         .first()
-
     )
 
     if db_order is None:
