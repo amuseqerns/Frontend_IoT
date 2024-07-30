@@ -6,10 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
 # Import models
-import models
 from database import SessionLocal, engine
-
-load_dotenv()
+import models
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -25,11 +23,13 @@ def get_db():
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[""],
+    allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=[""],
+    allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# https://fastapi.tiangolo.com/tutorial/sql-databases/#crud-utils
 
 @router_v1.get('/books')
 async def get_books(db: Session = Depends(get_db)):
@@ -41,25 +41,14 @@ async def get_book(book_id: int, db: Session = Depends(get_db)):
 
 @router_v1.post('/books')
 async def create_book(book: dict, response: Response, db: Session = Depends(get_db)):
-    newbook = models.Book(
-        title=book['title'], 
-        author=book['author'], 
-        year=book['year'], 
-        is_published=book['is_published'],
-        description=book['description'], 
-        prologue=book['prologue'], 
-        type1=book['type1'],
-        type2=book['type2'], 
-        type3=book['type3'], 
-        type4=book['type4']
-    )
+    # TODO: Add validation
+    newbook = models.Book(title=book['title'], author=book['author'], year=book['year'], is_published=book['is_published'])
     db.add(newbook)
     db.commit()
     db.refresh(newbook)
     response.status_code = 201
     return newbook
 
-@router_v1.patch('/books/{book_id}')
 async def update_book(book_id: int, book: dict, response: Response, db: Session = Depends(get_db)):
     currentbook = db.query(models.Book).filter(models.Book.id == book_id).first()
     if currentbook:
