@@ -49,34 +49,13 @@ async def create_book(book: dict, response: Response, db: Session = Depends(get_
     response.status_code = 201
     return newbook
 
-async def update_book(book_id: int, book: dict, response: Response, db: Session = Depends(get_db)):
-    currentbook = db.query(models.Book).filter(models.Book.id == book_id).first()
-    if currentbook:
-        currentbook.title = book['title']
-        currentbook.author = book['author']
-        currentbook.year = book['year']
-        currentbook.description = book['description']
-        currentbook.prologue = book['prologue']
-        currentbook.type1 = book['type1']
-        currentbook.type2 = book['type2']
-        currentbook.type3 = book['type3']
-        currentbook.type4 = book['type4']
-        currentbook.is_published = book['is_published']
+# @router_v1.patch('/books/{book_id}')
+# async def update_book(book_id: int, book: dict, db: Session = Depends(get_db)):
+#     pass
 
-        db.commit()
-        db.refresh(currentbook)
-        response.status_code = 202
-        return currentbook
-    else:
-        response.status_code = 404
-        return {'message': 'book not found'}
-
-@router_v1.delete('/books/{book_id}')
-async def delete_book(book_id: int, db: Session = Depends(get_db)):
-    book = db.query(models.Book).filter(models.Book.id == book_id).first()
-    db.delete(book)
-    db.commit()
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String,Float
+# @router_v1.delete('/books/{book_id}')
+# async def delete_book(book_id: int, db: Session = Depends(get_db)):
+#     pass
 
 app.include_router(router_v1)
 
