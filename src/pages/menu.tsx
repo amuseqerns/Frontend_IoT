@@ -8,7 +8,7 @@ import { IconAlertTriangleFilled, IconPlus } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 export default function MenuPage() {
-  const { data: books, error } = useSWR<Menu[]>("/menu");
+  const { data: menu, error } = useSWR<Menu[]>("/menu");
 
   return (
     <>
