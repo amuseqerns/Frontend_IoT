@@ -4,7 +4,7 @@ import useSWR from "swr";
 import { Order } from "../lib/models";
 import Loading from "../components/loading";
 import { Alert, Button } from "@mantine/core";
-import { IconAlertTriangleFilled, IconPlus } from "@tabler/icons-react";
+import { IconAlertTriangleFilled } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 
 export default function OrderPage() {

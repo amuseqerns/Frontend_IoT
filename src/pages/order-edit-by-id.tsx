@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { Order, Menu } from "../lib/models";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Layout from "../components/layout";
 import { Alert, Button, Container, Divider, NumberInput, TextInput, Select } from "@mantine/core";
 import Loading from "../components/loading";
