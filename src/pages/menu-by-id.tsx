@@ -37,7 +37,7 @@ export default function MenuByIdPage() {
                   className="w-full object-cover aspect-[3/4]"
                 />
                 <div className="col-span-2 px-4 space-y-2 py-4">
-                  <h3>รายละเอียดกาเเฟ</h3>
+                  <h3>รายละเอียด</h3>
                   <p className="indent-4">
                     {menu.description}
                   </p>
@@ -60,7 +60,7 @@ export default function MenuByIdPage() {
                 className="mt-4"
                 leftSection={<IconEdit />}
               >
-                แก้ไขข้อมูลกาเเฟ
+                แก้ไขข้อมูลเมนูเครื่องดื่ม
               </Button>
             </>
           )}

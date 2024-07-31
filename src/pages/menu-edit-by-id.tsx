@@ -207,7 +207,7 @@ export default function MenuEditById() {
                       });
                     }}
                   >
-                    ลบเมนูนี้
+                    ลบเมนู
                   </Button>
 
                   <Button type="submit" loading={isLoading || isProcessing}>
