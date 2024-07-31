@@ -21,20 +21,20 @@ export default function MenuCreatePage() {
 
     validate: {
       name: (value) => {
-        if (typeof value !== 'string') return "ชื่อกาแฟต้องเป็นข้อความ";
-        if (!value.trim()) return "กรุณาระบุชื่อกาแฟ";
-        if (value.length < 2) return "ชื่อกาแฟต้องมีความยาวอย่างน้อย 2 ตัวอักษร";
+        if (typeof value !== 'string') return "ชื่อต้องเป็นข้อความ";
+        if (!value.trim()) return "กรุณาระบุชื่อเครื่องดื่ม";
+        if (value.length < 2) return "ชื่อเครื่องดื่มต้องมีความยาวอย่างน้อย 2 ตัวอักษร";
         return null;
 
       },
       price: (value) => {
-        if (!value) return "กรุณาระบุราคากาแฟ";
+        if (!value) return "กรุณาระบุราคา";
         if (isNaN(Number(value))) return "ราคาต้องเป็นตัวเลขเท่านั้น";
         if (Number(value) <= 0) return "ราคาต้องมากกว่า 0";
         return null;
       },
       description: (value) => {
-        if (value && value.length > 500) return "รายละเอียดกาแฟต้องมีความยาวไม่เกิน 500 ตัวอักษร";
+        if (value && value.length > 500) return "รายละเอียดต้องมีความยาวไม่เกิน 500 ตัวอักษร";
         return null;
       },
     },
@@ -45,8 +45,8 @@ export default function MenuCreatePage() {
       setIsProcessing(true);
       const response = await axios.post<Menu>(`menu`, values);
       notifications.show({
-        title: "เพิ่มข้อมูลกาเเฟสำเร็จ",
-        message: "ข้อมูลกาเเฟได้รับการเพิ่มเรียบร้อยแล้ว",
+        title: "เพิ่มข้อมูลสำเร็จ",
+        message: "ข้อมูลถูกเพิ่มเรียบร้อยแล้ว",
         color: "teal",
       });
       navigate(`/menu/${response.data.id}`);
@@ -81,12 +81,12 @@ export default function MenuCreatePage() {
     <>
       <Layout>
         <Container className="mt-8">
-          <h1 className="text-xl">เพิ่มกาเเฟในระบบ</h1>
+          <h1 className="text-xl">เพิ่มเมนูเครื่องดื่มในระบบ</h1>
 
           <form onSubmit={menuCreateForm.onSubmit(handleSubmit)} className="space-y-8">
             <TextInput
-              label="ชื่อกาเเฟ"
-              placeholder="ชื่อกาเเฟ"
+              label="ชื่อเครื่องดื่ม"
+              placeholder="ชื่อเครื่องดื่ม"
               {...menuCreateForm.getInputProps("name")}
 
             />
@@ -100,15 +100,15 @@ export default function MenuCreatePage() {
 
             {/* TODO: new */}
             <TextInput
-              label="รายละเอียดกาเเฟ"
-              placeholder="รายละเอียดกาเเฟ"
+              label="รายละเอียด"
+              placeholder="รายละเอียด"
               {...menuCreateForm.getInputProps("description")}
             />
 
             <Divider />
 
             <Button type="submit" loading={isProcessing}>
-              บันทึกข้อมูล
+              บันทึก
             </Button>
           </form>
         </Container>

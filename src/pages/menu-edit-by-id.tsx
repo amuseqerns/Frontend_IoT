@@ -53,8 +53,8 @@ export default function MenuEditById() {
       setIsProcessing(true);
       await axios.patch(`/menu/${menuId}`, values);
       notifications.show({
-        title: "แก้ไขข้อมูลกาเเฟสำเร็จ",
-        message: "ข้อมูลกาเเฟได้รับการแก้ไขเรียบร้อยแล้ว",
+        title: "แก้ไขข้อมูลสำเร็จ",
+        message: "แก้ไขข้อมูลเรียบร้อย",
         color: "teal",
       });
       navigate(`/menu/${menuId}`);
@@ -64,8 +64,8 @@ export default function MenuEditById() {
         switch (status) {
           case 404:
             notifications.show({
-              title: "ไม่พบข้อมูลกาเเฟ",
-              message: "ไม่พบข้อมูลกาเเฟที่ต้องการแก้ไข",
+              title: "ไม่พบข้อมูล",
+              message: "ไม่พบข้อมูลที่ต้องการแก้ไข",
               color: "red",
             });
             break;
@@ -101,8 +101,8 @@ export default function MenuEditById() {
       setIsProcessing(true);
       await axios.delete(`/menu/${menuId}`);
       notifications.show({
-        title: "ลบกาเเฟสำเร็จ",
-        message: "ลบกาเเฟออกจากระบบเรียบร้อยแล้ว",
+        title: "ลบเมนูสำเร็จ",
+        message: "ลบเมนูเรียบร้อยแล้ว",
         color: "red",
       });
       navigate("/menu");
@@ -110,8 +110,8 @@ export default function MenuEditById() {
       if (error instanceof AxiosError) {
         if (error.response?.status === 404) {
           notifications.show({
-            title: "ไม่พบข้อมูลกาเเฟ",
-            message: "ไม่พบข้อมูลกาเเฟที่ต้องการลบ",
+            title: "ไม่พบข้อมูล",
+            message: "ไม่พบข้อมูลที่ต้องการลบ",
             color: "red",
           });
         } else if (error.response?.status || 500 >= 500) {
@@ -145,7 +145,7 @@ export default function MenuEditById() {
     <>
       <Layout>
         <Container className="mt-8">
-          <h1 className="text-xl">แก้ไขข้อมูลกาเเฟ</h1>
+          <h1 className="text-xl">แก้ไขข้อมูล</h1>
 
           {isLoading && !error && <Loading />}
           {error && (
@@ -162,8 +162,8 @@ export default function MenuEditById() {
             <>
               <form onSubmit={menuEditForm.onSubmit(handleSubmit)} className="space-y-8">
                 <TextInput
-                  label="ชื่อกาแฟ"
-                  placeholder="ชื่อกาแฟ"
+                  label="ชื่อเครื่องดื่ม"
+                  placeholder="ชื่อเครื่องดื่ม"
                   {...menuEditForm.getInputProps("name")}
                 />
 
@@ -175,8 +175,8 @@ export default function MenuEditById() {
                 />
 
                 <TextInput
-                  label="รายละเอียดกาแฟ"
-                  placeholder="รายละเอียดกาแฟ"
+                  label="รายละเอียด"
+                  placeholder="รายละเอียด"
                   {...menuEditForm.getInputProps("description")}
                 />
 
@@ -191,10 +191,10 @@ export default function MenuEditById() {
                     size="xs"
                     onClick={() => {
                       modals.openConfirmModal({
-                        title: "คุณต้องการลบกาเเฟเล่มนี้ใช่หรือไม่",
+                        title: "คุณต้องการลบเมนูนี้ใช่หรือไม่",
                         children: (
                           <span className="text-xs">
-                            เมื่อคุณดำนเนินการลบกาเเฟเล่มนี้แล้ว จะไม่สามารถย้อนกลับได้
+                            เมื่อคุณดำนเนินการลบเมนูแล้ว จะไม่สามารถย้อนกลับได้
                           </span>
                         ),
                         labels: { confirm: "ลบ", cancel: "ยกเลิก" },
@@ -207,11 +207,11 @@ export default function MenuEditById() {
                       });
                     }}
                   >
-                    ลบกาเเฟนี้
+                    ลบเมนูนี้
                   </Button>
 
                   <Button type="submit" loading={isLoading || isProcessing}>
-                    บันทึกข้อมูล
+                    บันทึก
                   </Button>
                 </div>
               </form>
