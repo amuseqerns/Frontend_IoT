@@ -79,13 +79,13 @@ export default function OrderCreatePage() {
   return (
     <Layout>
       <Container className="mt-8">
-        <h1 className="text-xl">สั่งกาแฟ</h1>
+        <h1 className="text-xl">สั่งเมนูเครื่องดื่ม</h1>
 
         <form onSubmit={orderCreateForm.onSubmit(handleSubmit)} className="space-y-8">
           <Select
-            label="เลือกกาแฟ"
-            placeholder="เลือกกาแฟที่ต้องการ"
-            data={menu?.map(menu => ({ value: menu.id.toString(), label: `${menu.name} - ฿${menu.price}` })) || []}
+            label="เลือกเมนู"
+            placeholder="เลือกเมนูที่ต้องการ"
+            data={menu?.map(menu => ({ value: menu.id.toString(), label: `${menu.name} ${menu.price}฿` })) || []}
             {...orderCreateForm.getInputProps("menu_id")}
           />
 

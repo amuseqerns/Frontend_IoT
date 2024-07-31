@@ -76,56 +76,6 @@ async def delete_book(book_id: int, response: Response, db: Session = Depends(ge
     response.status_code = 204
     return
 
-# @router_v1.patch('/books/{book_id}')
-# async def update_book(book_id: int, book: dict, db: Session = Depends(get_db)):
-#     pass
-
-# @router_v1.delete('/books/{book_id}')
-# async def delete_book(book_id: int, db: Session = Depends(get_db)):
-#     pass
-
-
-
-#students
-@router_v1.get('/students')
-async def get_students(db: Session = Depends(get_db)):
-    return db.query(models.Student).all()
-
-@router_v1.get('/students/{student_id}')
-async def get_student(student_id: int, db: Session = Depends(get_db)):
-    return db.query(models.Student).filter(models.Student.id == student_id).first()
-
-@router_v1.post('/students')
-async def create_student(student: dict, response: Response, db: Session = Depends(get_db)):
-    # TODO: Add validation
-    newstudent = models.Student(name=student['name'], lastname=student['lastname'], dob=student['dob'], sex=student['sex'])
-    db.add(newstudent)
-    db.commit()
-    db.refresh(newstudent)
-    response.status_code = 201
-    return newstudent
-
-@router_v1.patch('/students/{student_id}')
-async def update_student(student_id: int, student: dict, db: Session = Depends(get_db)):
-    update_student = db.query(models.Student).filter(models.Student.id == student_id).first()
-    update_student.name = student['name']
-    update_student.lastname = student['lastname']
-    update_student.dob = student['dob']
-    update_student.sex = student['sex']
-    db.commit()
-    db.refresh(update_student)
-    Response.status_code = 200
-    return update_student
-
-@router_v1.delete('/students/{student_id}')
-async def delete_student(student_id: int, response: Response, db: Session = Depends(get_db)):
-    student = db.query(models.Student).filter(models.Student.id == student_id).first()
-    db.delete(student)
-    db.commit()
-    response.status_code = 204
-    return
-
-
 #cafe
 @router_v1.get('/menu')
 async def get_menu(db: Session = Depends(get_db)):
