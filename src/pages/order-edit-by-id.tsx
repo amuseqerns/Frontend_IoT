@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { Order, Menu } from "../lib/models";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, Link, useParams } from "react-router-dom";
 import Layout from "../components/layout";
 import { Alert, Button, Container, Divider, NumberInput, TextInput, Select } from "@mantine/core";
 import Loading from "../components/loading";
@@ -25,13 +25,11 @@ export default function OrderEditById() {
     initialValues: {
       menu_id: "",
       quantity: 1,
-      status: "pending",
       note: "",
     },
     validate: {
-      menu_id: (value) => (!value ? "กรุณาเลือกกาแฟ" : null),
+      menu_id: (value) => (!value ? "กรุณาเลือกรายการเครื่องดื่ม" : null),
       quantity: (value) => (value <= 0 ? "จำนวนต้องมากกว่า 0" : null),
-      status: (value) => (!value ? "กรุณาระบุสถานะ" : null),
       note: (value) => (value && value.length > 500 ? "หมายเหตุต้องมีความยาวไม่เกิน 500 ตัวอักษร" : null),
     },
   });
@@ -41,11 +39,11 @@ export default function OrderEditById() {
       setIsProcessing(true);
       await axios.patch(`/order/${orderId}`, values);
       notifications.show({
-        title: "แก้ไขข้อมูลออเดอร์สำเร็จ",
-        message: "ข้อมูลออเดอร์ได้รับการแก้ไขเรียบร้อยแล้ว",
+        title: "แก้ไขรายการสำเร็จ",
+        message: "ข้อมูลได้รับการแก้ไขเรียบร้อยแล้ว",
         color: "teal",
       });
-      navigate(`/order/${orderId}`);
+      navigate(`/order`);
     } catch (error) {
       handleError(error);
     } finally {
@@ -58,8 +56,8 @@ export default function OrderEditById() {
       setIsProcessing(true);
       await axios.delete(`/order/${orderId}`);
       notifications.show({
-        title: "ลบออเดอร์สำเร็จ",
-        message: "ลบออเดอร์นี้ออกจากระบบเรียบร้อยแล้ว",
+        title: "ลบรายการสำเร็จ",
+        message: "ลบรายการนี้ออกจากระบบเรียบร้อยแล้ว",
         color: "red",
       });
       navigate("/order");
@@ -76,15 +74,15 @@ export default function OrderEditById() {
       switch (status) {
         case 404:
           notifications.show({
-            title: "ไม่พบข้อมูลออเดอร์",
-            message: "ไม่พบข้อมูลออเดอร์ที่ต้องการแก้ไข",
+            title: "ไม่พบข้อมูล",
+            message: "ไม่พบข้อมูลที่ต้องการแก้ไข",
             color: "red",
           });
           break;
         case 422:
           notifications.show({
             title: "ข้อมูลไม่ถูกต้อง",
-            message: "กรุณาตรวจสอบข้อมูลที่กรอกใหม่อีกครั้ง",
+            message: "กรุณาตรวจสอบข้อมูลใหม่อีกครั้ง",
             color: "red",
           });
           break;
@@ -124,7 +122,7 @@ export default function OrderEditById() {
   return (
     <Layout>
       <Container className="mt-8">
-        <h1 className="text-xl">แก้ไขข้อมูลออเดอร์</h1>
+        <h1 className="text-xl">ข้อมูลออเดอร์</h1>
 
         {isLoading && !error && <Loading />}
         {error && (
@@ -135,9 +133,9 @@ export default function OrderEditById() {
 
         {!!order && (
           <form onSubmit={orderEditForm.onSubmit(handleSubmit)} className="space-y-8">
-            <Select
-              label="ชื่อกาแฟ"
-              placeholder="เลือกกาแฟ"
+            <Select disabled
+              label="ชื่อเครื่องดื่ม"
+              placeholder="เลือกเครื่องดื่ม"
               data={menu?.map(menu => ({ value: menu.id.toString(), label: menu.name })) || []}
               {...orderEditForm.getInputProps("menu_id")}
             />
@@ -147,12 +145,6 @@ export default function OrderEditById() {
               placeholder="จำนวน"
               min={1}
               {...orderEditForm.getInputProps("quantity")}
-            />
-
-            <TextInput
-              label="สถานะ(ex. pending, completed, cancelled)"
-              placeholder="สถานะ"
-              {...orderEditForm.getInputProps("status")}
             />
 
             <TextInput
@@ -171,7 +163,7 @@ export default function OrderEditById() {
                 onClick={() => {
                   modals.openConfirmModal({
                     title: "คุณต้องการลบออเดอร์นี้ใช่หรือไม่",
-                    children: <span className="text-xs">เมื่อคุณดำเนินการลบออเดอร์นี้แล้ว จะไม่สามารถย้อนกลับได้</span>,
+                    children: <span className="text-xs">เมื่อคุณดำเนินการลบแล้ว จะไม่สามารถย้อนกลับได้</span>,
                     labels: { confirm: "ลบ", cancel: "ยกเลิก" },
                     onConfirm: handleDelete,
                     confirmProps: {

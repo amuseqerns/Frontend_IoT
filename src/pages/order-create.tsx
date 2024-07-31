@@ -23,7 +23,7 @@ export default function OrderCreatePage() {
 
     validate: {
       menu_id: (value) => {
-        if (!value) return "กรุณาเลือกกาแฟ";
+        if (!value) return "กรุณาระบุเมนูเครื่องดื่ม";
         return null;
       },
       quantity: (value) => {
@@ -42,19 +42,19 @@ export default function OrderCreatePage() {
   const handleSubmit = async (values: typeof orderCreateForm.values) => {
     try {
       setIsProcessing(true);
-      const response = await axios.post<Order>(`order`, values);
+      await axios.post<Order>(`order`, values);
       notifications.show({
-        title: "สั่งกาแฟสำเร็จ",
-        message: "คำสั่งซื้อของคุณได้รับการบันทึกเรียบร้อยแล้ว",
+        title: "ทำรายการสำเร็จ",
+        message: "รายการสั่งซื้อได้รับการบันทึกเรียบร้อย",
         color: "teal",
       });
-      navigate(`/order/${response.data.id}`);
+      navigate(`/menu`);
     } catch (error) {
       if (error instanceof AxiosError) {
         if (error.response?.status === 422) {
           notifications.show({
             title: "ข้อมูลไม่ถูกต้อง",
-            message: "กรุณาตรวจสอบข้อมูลที่กรอกใหม่อีกครั้ง",
+            message: "กรุณาตรวจสอบข้อมูลใหม่อีกครั้ง",
             color: "red",
           });
         } else if (error.response?.status || 500 >= 500) {
@@ -98,7 +98,7 @@ export default function OrderCreatePage() {
 
           <Textarea
             label="หมายเหตุ"
-            placeholder="หมายเหตุหรือคำแนะนำพิเศษ (ถ้ามี)"
+            placeholder="หมายเหตุ (ถ้ามี)"
             {...orderCreateForm.getInputProps("note")}
           />
 

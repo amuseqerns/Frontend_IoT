@@ -26,7 +26,7 @@ export default function MenuPage() {
         <section className="container mx-auto py-8">
           <div className="flex justify-between">
             <h1>รายการเครื่องดื่ม</h1>
-
+            <div className="flex space-x-2">
             <Button
               component={Link}
               leftSection={<IconPlus />}
@@ -37,6 +37,7 @@ export default function MenuPage() {
             >
               เพิ่มเมนู
             </Button>
+            </div>
           </div>
 
           {!menu && !error && <Loading />}

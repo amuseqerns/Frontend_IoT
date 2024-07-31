@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { Order } from "../lib/models";
 import useSWR from "swr";
 import Loading from "../components/loading";
-import { IconAlertTriangleFilled, IconEdit } from "@tabler/icons-react";
+import { IconAlertTriangleFilled } from "@tabler/icons-react";
 
 export default function OrderByIdPage() {
   const { orderId } = useParams();
@@ -26,48 +26,7 @@ export default function OrderByIdPage() {
 
         {order && (
           <>
-            <h1 className="text-2xl font-bold mb-4">{order.menu_name}</h1>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <img
-                src="https://placehold.co/300x400"
-                alt={order.menu_name}
-                className="w-full object-cover aspect-[3/4] rounded-lg"
-              />
-
-              <div className="col-span-2 space-y-4">
-                <div>
-                  <h3 className="text-xl font-semibold">รหัสออเดอร์</h3>
-                  <p>{order.id}</p>
-                </div>
-
-                <div>
-                  <h3 className="text-xl font-semibold">รหัสเมนูกาแฟ</h3>
-                  <p>{order.menu_id}</p>
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold">รายละเอียดการสั่งเมนู</h3>
-                  <p>
-                    จำนวน: {order.quantity}<br />
-                    สถานะ: {order.status}<br />
-                    หมายเหตุ: {order.note || "ไม่มี"}
-                  </p>
-                </div>
-
-
-              </div>
-            </div>
-
             <Divider className="my-6" />
-
-            <Button
-              color="blue"
-              size="sm"
-              component={Link}
-              to={`/order/${orderId}/edit`}
-              leftSection={<IconEdit size={16} />}
-            >
-              แก้ไขข้อมูลการสั่ง
-            </Button>
           </>
         )}
       </Container>

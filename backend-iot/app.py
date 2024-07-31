@@ -55,18 +55,18 @@ async def create_book(book: dict, response: Response, db: Session = Depends(get_
 
 @router_v1.patch('/books/{book_id}')
 async def update_book(book_id: int, book: dict, db: Session = Depends(get_db)):
-    update_book = db.query(models.Book).filter(models.Book.id == book_id).first()
-    update_book.title = book['title']
-    update_book.author = book['author']
-    update_book.year = book['year']
-    update_book.is_published = book['is_published']
-    update_book.description = book['description']
-    update_book.synopsis = book['synopsis']
-    update_book.category = book['category']
+    edit_book = db.query(models.Book).filter(models.Book.id == book_id).first()
+    edit_book.title = book['title']
+    edit_book.author = book['author']
+    edit_book.year = book['year']
+    edit_book.is_published = book['is_published']
+    edit_book.description = book['description']
+    edit_book.synopsis = book['synopsis']
+    edit_book.category = book['category']
     db.commit()
-    db.refresh(update_book)
+    db.refresh(edit_book)
     Response.status_code = 200
-    return update_book
+    return edit_book
 
 @router_v1.delete('/books/{book_id}')
 async def delete_book(book_id: int, response: Response, db: Session = Depends(get_db)):

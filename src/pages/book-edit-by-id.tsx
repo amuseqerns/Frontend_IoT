@@ -162,6 +162,23 @@ export default function BookEditById() {
                   max={new Date().getFullYear() + 1}
                   {...bookEditForm.getInputProps("year")}
                 />
+                <TextInput
+                  label="รายละเอียด"
+                  placeholder="รายละเอียด"
+                  {...bookEditForm.getInputProps("description")}
+                />
+
+                <TextInput
+                  label="เรื่องย่อ"
+                  placeholder="เรื่องย่อ"
+                  {...bookEditForm.getInputProps("synopsis")}
+                />
+
+                <TextInput
+                  label="หมวดหมู่"
+                  placeholder="หมวดหมู่"
+                  {...bookEditForm.getInputProps("category")}
+                />
 
                 {/* TODO: เพิ่มรายละเอียดหนังสือ */}
                 {/* TODO: เพิ่มเรื่องย่อ */}

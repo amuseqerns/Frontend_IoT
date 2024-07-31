@@ -70,6 +70,7 @@ export default function BookByIdPage() {
               >
                 แก้ไขข้อมูลหนังสือ
               </Button>
+              <div className="mt-8"></div>
             </>
           )}
         </Container>
